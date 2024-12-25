@@ -36,10 +36,11 @@ const App: React.FC = () => {
     const loadImages = async () => {
       setIsLoading(true);
       try {
-        const data = await fetchImages(query, page);
+        const data: FetchImagesResponse = await fetchImages(query, page);
         setImages(prevImages => [...prevImages, ...data.results]);
-      } catch (error) {
-        setError(error.message);
+      } catch (error: any) {
+        setError((error as Error).message);
+                   
       } finally {
         setIsLoading(false);
       }
@@ -48,7 +49,7 @@ const App: React.FC = () => {
     loadImages();
   }, [query, page]);
 
-  const handleSearch = newQuery => {
+  const handleSearch = (newQuery: string) => {
     if (newQuery === query) return;
     setQuery(newQuery);
     setImages([]);
@@ -58,7 +59,7 @@ const App: React.FC = () => {
 
   const handleLoadMore = () => setPage(prevPage => prevPage + 1);
 
-  const handleImageClick = image => setSelectedImage(image);
+  const handleImageClick = (image: Image) => setSelectedImage(image);
 
   const handleCloseModal = () => setSelectedImage(null);
 

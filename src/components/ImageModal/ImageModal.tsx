@@ -5,12 +5,10 @@ import s from './ImageModal.module.css';
 interface ImageModalProps {
   image: Image | null;
   onClose: () => void;
-};
+}
 
-interface Image {
-  urls: {
-    regular: string;
-  };
+type Image = {
+  urls: { regular: string };
   alt_description: string;
 };
 
@@ -26,10 +24,27 @@ const ImageModal: React.FC<ImageModalProps> = ({ image, onClose }) => {
   }, [onClose]);
 
   return (
-    <Modal isOpen={!!image} onRequestClose={onClose} className={s.modal} overlayClassName={s.overlay}>
-      <img className={s.imgModal} src={image.urls.regular} alt={image.alt_description} />
-      <p className={s.discModal}>{image.alt_description}</p>
-      <button onClick={onClose} className={s.btnModal}>Close</button>
+    <Modal
+      isOpen={!!image}
+      onRequestClose={onClose}
+      className={s.modal}
+      overlayClassName={s.overlay}
+    >
+      {image ? (
+        <>
+          <img
+            className={s.imgModal}
+            src={image.urls.regular}
+            alt={image.alt_description || 'No description available'}
+          />
+          <p className={s.discModal}>{image.alt_description || 'No description available'}</p>
+        </>
+      ) : (
+        <p className={s.discModal}>Image not available</p>
+      )}
+      <button onClick={onClose} className={s.btnModal}>
+        Close
+      </button>
     </Modal>
   );
 };
