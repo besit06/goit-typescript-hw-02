@@ -1,14 +1,26 @@
 import axios from 'axios';
 
 const BASE_URL = 'https://api.unsplash.com/search/photos';
-const ACCESS_KEY = '-fOtwOx0CipvxMObjAGwLOpgIiL2PO84C_KcM0ntinE'; 
+const ACCESS_KEY = '-fOtwOx0CipvxMObjAGwLOpgIiL2PO84C_KcM0ntinE';
 
-interface fetchImagesProps {
-  onSubmit: (query: string) => void;
-  page: number;
-};
+interface Image {
+  id: string;
+  urls: {
+    small: string;
+    regular: string;
+  };
+  alt_description: string;
+}
 
-export const fetchImages: React.FC<fetchImagesProps> = async (query, page = 1, perPage = 12) => {
+interface FetchImagesResponse {
+  results: Image[];
+}
+
+export const fetchImages = async (
+  query: string,
+  page: number = 1,
+  perPage: number = 12
+): Promise<FetchImagesResponse> => {
   const response = await axios.get(BASE_URL, {
     params: {
       query,
