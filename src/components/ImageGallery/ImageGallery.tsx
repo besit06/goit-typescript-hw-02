@@ -13,7 +13,7 @@ interface Image {
 
 interface ImageGalleryProps {
   images: Image[];
-  onImageClick: (image: Image) => void; // Функция, принимающая объект типа Image
+  onImageClick: (image: Image) => void; 
 }
 
 const ImageGallery: React.FC<ImageGalleryProps> = ({ images, onImageClick }) => (
