@@ -8,15 +8,7 @@ import ImageModal from './components/ImageModal/ImageModal.jsx';
 import { fetchImages } from './services/api.js';
 import { Toaster } from 'react-hot-toast';
 import './App.module.css';
-
-interface Image {
-  id: string;
-  urls: {
-    small: string;
-    regular: string;
-  };
-  alt_description: string;
-};
+import { Image } from './types';
 
 interface FetchImagesResponse {
   results: Image[];
