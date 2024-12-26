@@ -1,16 +1,13 @@
 import { useEffect } from 'react';
 import Modal from 'react-modal';
 import s from './ImageModal.module.css';
+import { Image } from '../../types';
 
 interface ImageModalProps {
   image: Image | null;
   onClose: () => void;
 }
 
-type Image = {
-  urls: { regular: string };
-  alt_description: string;
-};
 
 Modal.setAppElement('#root');
 

@@ -1,11 +1,6 @@
 import s from './ImageCard.module.css';
+import { Image } from '../../types';
 
-interface Image {
-  urls: {
-    small: string;
-  };
-  alt_description: string;
-}
 
 interface ImageCardProps {
   image: Image;
